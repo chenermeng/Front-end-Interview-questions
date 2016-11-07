@@ -1,2 +1,3 @@
 # javascript_intertesting_questions
 Collect some interesting questions
+# 收集一些自己平时遇到的有趣的算法题或者面试题
