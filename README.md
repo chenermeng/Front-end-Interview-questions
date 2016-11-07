@@ -1,4 +1,4 @@
-# javascript_intertesting_questions
+# Front-end-Interview-questions
 ## 收集一些自己平时遇到的一些算法题或者面试题，不定期添加。
 ## 数组去重的几种方法
 ### 双循环去重
