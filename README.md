@@ -1,0 +1,2 @@
+# javascript_intertesting_questions
+Collect some interesting questions
