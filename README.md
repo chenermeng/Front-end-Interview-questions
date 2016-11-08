@@ -73,3 +73,95 @@
         return arr;
     }
 ```
+## 几种常见的排序
+### 冒泡排序
+
+    把数组中相邻两项依次相互比较，如果a>b，a和b就颠倒位置，拿a跟a后边的那项继续比较。如果a<b，就拿b跟b后边的那项继续比较，每一轮都会排序好一个数。
+         如[4,3,2,1]  length = 4
+         第一轮 i=0
+         第一次 比较4和3，4>3 => [3,4,2,1];
+         第二次 比较4和2，4>2 => [3,2,4,1];
+         第三次 比较4和1，4>1 => [3,2,1,4];
+         第一轮 比较3次 每轮比较length-1-0  并且把数组中最大的项放到末尾了
+         第二轮 i=1
+         第一次 比较3和2，3>2 => [2,3,1,4];
+         第二次 比较3和1，3>1 => [2,1,3,4];
+         第二轮 比较2次 每轮比较length-1-1  把数组中第二大的项放到倒数第二位
+         第三轮 i=2
+         第一次 比较2和1，2>1 => [1,2,3,4]
+         第三轮 比较1次 每轮比较length-1-2 把数组中第三大的项放到倒数第三位
+
+        数组长度为length的话，一共比较length-1轮，每轮比较length-1-i次
+
+        对于数组中两项颠倒位置的方法
+        1) 用第三方变量的方法
+        a>b a和b颠倒位置
+        tmp = a
+        a = b
+        b = tmp
+        2)不用第三方变量的方法
+        a>b a和b颠倒位置
+        a = a+b
+        b = a-b
+        a = a-b
+```
+    function bubbleSort(arr){
+        var flag = false; //设置一个开关
+        for(var i = 0; i < arr.length - 1; i++){  //一共比较的轮数
+            for(var j = 0; j < arr.length - 1 - i; j++){ //每轮比较的次数
+                if(arr[j] > arr[j + 1]){
+                    arr[j] = arr[j] + arr[j + 1];
+                    arr[j + 1] = arr[j] - arr[j + 1];
+                    arr[j] = arr[j] - arr[j + 1];
+                    flag = true
+                }
+            }
+            /*
+             如果当前这轮已经把整个数组排序好了的话，就直接结束循环，不再进行下一轮排序了。如[2,1,3,4]这种只需要一轮就可以排序好，就没必要再进行好几轮了。
+             */
+            if(flag){
+                flag = false;
+            } else {
+                break;
+            }
+        }
+        return arr;
+    }
+```
+### 插入排序
+把数组中的每一项和新数组中的每一项相比较，如果比新数组中的当前项大就放到当前项后边，否则就接着跟下一项比较，如果比新数组的每一项都小的话，就直接放到新数组的开头
+```
+   function insertSort(arr){
+        var newArr = []; //存放排序好的数组
+        newArr.push(arr[0]); //把数组的第一项拿来当作新数组初始的对照比较项
+        for(var i = 1; i < arr.length; i++){
+            var cur = arr[i]; // 数组中的当前项
+            for(var j = newArr.length - 1; j >= 0; j--){
+                if(cur < newArr[j]){  // cur如果比新数组中的当前项小的话 就继续跟下一项比较
+                    if(j == 0){  //如果cur比新数组最小的项还小，就直接把cur放到新数组开头
+                        newArr.unshift(cur);
+                    }
+                } else {
+                    newArr.splice(j + 1, 0, cur);//如果cur比新数组当前项大的话就放到当前项后边。
+                    break; // 如果cur已经放好位置了就没必要再继续比较了。
+                }
+            }
+        }
+        return newArr;
+    }
+```
+### 快速排序
+以数组中的中间项为基准点，数组中的每一项跟它比较，小的放到左边，大的放到右边。把拆开的数组继续用这种思想再拆，直到拆的左边或者右边的部分只剩下1项或0项为止。最后把所有拆分的数组拼接在一起
+```
+    function quickSort(arr){
+        if(arr.length <= 1) return arr;  //设置一个停止条件
+        var left = [];
+        var right = [];
+        var middleIndex = Math.floor(arr.length / 2);  //中间项的索引
+        var middleItem = arr.splice(middleIndex, 1)[0];//中间项
+        for(var i = 0; i < arr.length; i++){
+            arr[i] < middleItem ? left.push(arr[i]) : right.push(arr[i]); //拆分数组，小的放左边，大的放右边
+        }
+        return quickSort(left).concat(middleItem, quickSort(right)); // 不断调用自身，直到拆的左边或者右边的部分只剩下1项或0项为止。 最后把所有拆分的数组拼接在一起
+    }
+```
