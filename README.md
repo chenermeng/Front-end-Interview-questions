@@ -1,5 +1,6 @@
 ## Front-end-Interview-questions
 #### 收集一些自己平时遇到的一些算法题或者面试题，不定期添加。
+##### 如有错误，欢迎指正。
 ## 数组去重的几种方法
 ### 双循环去重
 ```
@@ -168,4 +169,52 @@
         return quickSort(left).concat(middleItem, quickSort(right));
         // 不断调用自身，直到拆的左边或者右边的部分只剩下1项或0项为止。 最后把所有拆分的数组拼接在一起
     }
+```
+### 求出现次数最多的字母,并求出出现的次数(不区分大小写)
+```
+    //使用正则的方法
+    var str = 'bbbbbaaaacccDDDAAABBCCCBBAacbeeeEE';
+    str = str.toLowerCase().split('').sort(function(a, b){
+        return a.localeCompare(b);
+    }).join('');
+
+    var max = 0;
+    var maxStr = ''
+    var strTmp = str.replace(/(\w)\1+/g, function($0, $1){
+        var length = $0.length;
+        if(length > max){
+            max = length;
+            maxStr = $1
+        } else if(length == max){
+            maxStr += $1;
+        }
+    })
+    console.log('出现最多的字母是'+maxStr+'，一共出现了'+max+'次')
+```
+```
+    //使用对象的方法
+    var str = 'bbbbaaaacccDDDAAABBCCCBBAacbeeeEEggggggggg';
+    str = str.toLowerCase().split('').join('');
+    var obj = {};
+    var max = 0;
+    var maxStr = '';
+    for(var i = 0; i < str.length; i++){
+        var cur = str[i];
+        if(obj[cur]){
+            obj[cur]++;
+        } else {
+            obj[cur] = 1;
+        }
+    }
+    for(var attr in obj){
+        if(obj.hasOwnProperty(attr)){
+           if(max<obj[attr]){
+               max = obj[attr]
+               maxStr = attr;
+           }else if(max == obj[attr]){
+               maxStr +=attr;
+           }
+        }
+    }
+    console.log('出现最多的字母是'+maxStr+'，一共出现了'+max+'次')
 ```
