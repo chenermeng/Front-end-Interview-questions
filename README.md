@@ -239,3 +239,33 @@ break是跳出整个循环，循环完全结束。
 >     continue是本次循环结束，后边的代码不再执行，但是会继续执行累加，继续进行下一次的循环。
 >     这题的i的值变化过程：i=0 -> i=3 -> i=4 -> i=7 -> i=8 -> i=10
 >     所以最后控制台打印一次 结果是10;
+
+### 作用域，this,闭包相关的题
+```
+    var num = 10;
+    var obj = {
+        num : 20,
+        fn : (function(num){
+            this.num *= 2;
+            num += 10;
+            return function(){
+                this.num *= 3;
+                num += 1;
+                console.log(num);
+            }
+        })(num)
+    };
+    var fn = obj.fn;
+    fn();
+    obj.fn();
+    console.log(window.num, obj.num);
+```
+如图所示(作用域1.jpg)：
+![作用域](http://cm0818.com/tc/%E4%BD%9C%E7%94%A8%E5%9F%9F1.jpg)
+
+> 这题主要是考作用域,this，闭包等知识点。 主要注意以下几点就可以了：
+>  1. 自执行函数中的this指向window
+>  2. obj.fn的this指向obj
+>  3. obj.fn 和 fn都指向同一个内存地址
+>  4. 自执行函数的返回值被外部占用，内存不施放。
+>  5. fn()和obj.fn()中num+=1都是修改的自执行函数中的num值(相当于局部变量)
