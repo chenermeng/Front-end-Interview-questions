@@ -66,7 +66,7 @@
     //下标判断法
     function unique5(arr){
         for(var i = 0; i < arr.length; i++){
-            if(arr.indexOf(i) !== i){  //利用数组的下标判断，如果数组当前项的索引值不是它的下标，说明重复了。
+            if(arr.indexOf(arr[i]) !== i){  //利用数组的下标判断，如果数组当前项的索引值不是它的下标，说明重复了。
                 arr.splice(i, 1);
                 i--;
             }
