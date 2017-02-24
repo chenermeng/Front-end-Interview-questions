@@ -261,7 +261,7 @@ break是跳出整个循环，循环完全结束。
     console.log(window.num, obj.num);
 ```
 如图所示(作用域1.jpg)：
-![作用域](Front-end-Interview-questions/img/作用域1.jpg)
+![作用域](https://github.com/chenermeng/Front-end-Interview-questions/img/作用域1.jpg)
 
 > 这题主要是考作用域,this，闭包等知识点。 主要注意以下几点就可以了：
 >  1. 自执行函数中的this指向window
