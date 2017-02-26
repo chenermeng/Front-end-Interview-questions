@@ -1,8 +1,9 @@
 ## Front-end-Interview-questions
 #### 收集一些自己平时遇到的一些算法题或者面试题，不定期添加。
 ##### 如有错误，欢迎指正。
-## 数组去重的几种方法
-### 双循环去重
+### 数组去重的几种方法
+#### 双循环去重
+
 ```
     function unique1(arr){
         for(var i = 0; i < arr.length - 1; i++){
@@ -18,7 +19,8 @@
         return arr;
     }
 ```
-### sort()去重法
+#### sort()去重法
+
 ```
     function unique2(arr){
         arr.sort(function(a, b){
@@ -34,7 +36,8 @@
         return arr;
     }
 ```
-### indexOf去重
+#### indexOf去重
+
 ```
     function unique3(arr){
         var ary = [];  //创建一个新数组来实现数组去重
@@ -46,7 +49,8 @@
         return ary;
     }
 ```
-### 对象法去重
+#### 对象法去重
+
 ```
     function unique4(arr){
         var obj = {};//创建一个对象 利用对象的属性名不重复的特性来实现数组去重。
@@ -63,7 +67,8 @@
         return arr;
     }
 ```
-### 下标判断法
+#### 下标判断法
+
 ```
     function unique5(arr){
         for(var i = 0; i < arr.length; i++){
@@ -75,9 +80,11 @@
         return arr;
     }
 ```
-## 几种常见的排序
-### 冒泡排序
+### 几种常见的排序
 
+#### 冒泡排序
+
+```
     把数组中相邻两项依次相互比较，如果a>b，a和b就颠倒位置，拿a跟a后边的那项继续比较。
     如果a<b，就拿b跟b后边的那项继续比较，每一轮都会排序好一个数。
          如[4,3,2,1]  length = 4
@@ -108,6 +115,8 @@
         b = a-b
         a = a-b
 ```
+
+```
     function bubbleSort(arr){
         var flag = false; //设置一个开关
         for(var i = 0; i < arr.length - 1; i++){  //一共比较的轮数
@@ -132,8 +141,10 @@
         return arr;
     }
 ```
-### 插入排序
+
+#### 插入排序
 把数组中的每一项和新数组中的每一项相比较，如果比新数组中的当前项大就放到当前项后边，否则就接着跟下一项比较，如果比新数组的每一项都小的话，就直接放到新数组的开头
+
 ```
    function insertSort(arr){
         var newArr = []; //存放排序好的数组
@@ -154,15 +165,16 @@
         return newArr;
     }
 ```
-### 快速排序
+#### 快速排序
 以数组中的中间项为基准点，数组中的每一项跟它比较，小的放到左边，大的放到右边。把拆开的数组继续用这种思想再拆，直到拆的左边或者右边的部分只剩下1项或0项为止。最后把所有拆分的数组拼接在一起
+
 ```
     function quickSort(arr){
         if(arr.length <= 1) return arr;  //设置一个停止条件
         var left = [];
         var right = [];
-        var middleIndex = Math.floor(arr.length / 2);  //中间项的索引
-        var middleItem = arr.splice(middleIndex, 1)[0];//中间项
+        var middleIndex = Math.floor(arr.length / 2);  //中间项的索引 
+       var middleItem = arr.splice(middleIndex, 1)[0];//中间项
         for(var i = 0; i < arr.length; i++){
             arr[i] < middleItem ? left.push(arr[i]) : right.push(arr[i]); //拆分数组，小的放左边，大的放右边
         }
@@ -170,7 +182,8 @@
         // 不断调用自身，直到拆的左边或者右边的部分只剩下1项或0项为止。 最后把所有拆分的数组拼接在一起
     }
 ```
-### 求出现次数最多的字母,并求出出现的次数(不区分大小写)
+#### 求出现次数最多的字母,并求出出现的次数(不区分大小写)
+
 ```
     //使用正则的方法
     var str = 'bbbbbaaaacccDDDAAABBCCCBBAacbeeeEE';
@@ -191,6 +204,7 @@
     })
     console.log('出现最多的字母是'+maxStr+'，一共出现了'+max+'次')
 ```
+
 ```
     //使用对象的方法
     var str = 'bbbbaaaacccDDDAAABBCCCBBAacbeeeEEggggggggg';
@@ -218,7 +232,9 @@
     }
     console.log('出现最多的字母是'+maxStr+'，一共出现了'+max+'次')
 ```
-### continue和break
+
+#### continue和break
+
 ```
     for(var i = 0; i < 10; i++){
         if(i < 6){
@@ -240,7 +256,8 @@ break是跳出整个循环，循环完全结束。
 >     这题的i的值变化过程：i=0 -> i=3 -> i=4 -> i=7 -> i=8 -> i=10
 >     所以最后控制台打印一次 结果是10;
 
-### 作用域，this,闭包相关的题
+#### 作用域，this,闭包相关的题
+
 ```
     var num = 10;
     var obj = {
@@ -260,6 +277,7 @@ break是跳出整个循环，循环完全结束。
     obj.fn();
     console.log(window.num, obj.num);
 ```
+
 如图所示(作用域1.jpg)：
 ![作用域](https://github.com/chenermeng/Front-end-Interview-questions/blob/master/img/%E4%BD%9C%E7%94%A8%E5%9F%9F1.jpg?raw=true)
 
@@ -271,7 +289,7 @@ break是跳出整个循环，循环完全结束。
 >  5. fn()和obj.fn()中num+=1都是修改的自执行函数中的num值(相当于局部变量)
 
 
-### 从浏览器地址栏输入url到显示页面的步骤(以HTTP为例)
+#### 从浏览器地址栏输入url到显示页面的步骤(以HTTP为例)
 1. 在浏览器地址栏输入URL
 2. 浏览器查看**缓存**，如果请求资源在缓存中并且新鲜，跳转到转码步骤
     1. 如果资源未缓存，发起新请求
@@ -330,9 +348,8 @@ break是跳出整个循环，循环完全结束。
     7. 此时文档完全解析完成，浏览器可能还在等待如图片等内容加载，等这些**内容完成载入并且所有异步脚本完成载入和执行**，document.readState变为complete,window触发load事件
 23. **显示页面**（HTML解析过程中会逐步显示页面）
 
---end--
 
-### 如何进行网站性能优化
+#### 如何进行网站性能优化
 
 [雅虎Best Practices for Speeding Up Your Web Site](https://developer.yahoo.com/performance/rules.html)：
 
@@ -377,7 +394,42 @@ break是跳出整个循环，循环完全结束。
     3. 不要在HTML中拉伸图片
     4. 保证favicon.ico小并且可缓存
 - 移动方面
-    1. 保证组件小于25k
-    2. Pack Components into a Multipart Document
+  1. 尽量使用css3动画，开启硬件加速。
+  2. 适当使用touch事件代替click事件。
+  3. 避免使用css3渐变阴影效果。
+  4. 可以用transform: translateZ(0)来开启硬件加速。
+  5. 不滥用Float。Float在渲染时计算量比较大，尽量减少使用
+  6. 不滥用Web字体。Web字体需要下载，解析，重绘当前页面，尽量减少使用。
+  7. 合理使用requestAnimationFrame动画代替setTimeout
+  8. CSS中的属性（CSS3 transitions、CSS3 3D transforms、Opacity、Canvas、WebGL、Video）会触发GPU渲染，请合理使用。过渡使用会引发手机过耗电增加
 
---end--
+#### cookie 和session 的区别：
+
+```
+ 1、cookie数据存放在客户的浏览器上，session数据放在服务器上。
+
+ 2、cookie不是很安全，别人可以分析存放在本地的COOKIE并进行COOKIE欺骗
+
+    考虑到安全应当使用session。
+
+ 3、session会在一定时间内保存在服务器上。当访问增多，会比较占用你服务器的性能
+
+     考虑到减轻服务器性能方面，应当使用COOKIE。
+
+ 4、单个cookie保存的数据不能超过4K，很多浏览器都限制一个站点最多保存20个cookie。
+
+ 5、所以个人建议：
+
+    将登陆信息等重要信息存放为SESSION
+
+    其他信息如果需要保留，可以放在COOKIE中
+```
+#### sessionStorage,localStorage,cookie区别
+- 都会在浏览器端保存，有大小限制，同源限制
+- cookie会在请求时发送到服务器，作为会话标识，服务器可修改cookie；web storage不会发送到服务器
+- cookie有path概念，子路径可以访问父路径cookie，父路径不能访问子路径cookie
+- 有效期：cookie在设置的有效期内有效，默认为浏览器关闭; sessionStorage在窗口关闭前有效，localStorage长期有效，直到用户删除
+- 共享：sessionStorage不能共享，localStorage在同源文档之间共享，cookie在同源且符合path规则的文档之间共享
+- localStorage的修改会促发其他文档窗口的update事件
+- cookie有secure属性要求HTTPS传输
+- 浏览器不能保存超过300个cookie，单个服务器不能超过20个，每个cookie不能超过4k。web storage大小支持能达到5M
