@@ -166,15 +166,15 @@
     }
 ```
 #### 快速排序
-以数组中的中间项为基准点，数组中的每一项跟它比较，小的放到左边，大的放到右边。把拆开的数组继续用这种思想再拆，直到拆的左边或者右边的部分只剩下1项或0项为止。最后把所有拆分的数组拼接在一起
+以数组中的任意一项为基准点，数组中的每一项跟它比较，小的放到左边，大的放到右边。把拆开的数组继续用这种思想再拆，直到拆的左边或者右边的部分只剩下1项或0项为止。最后把所有拆分的数组拼接在一起
 
 ```
     function quickSort(arr){
         if(arr.length <= 1) return arr;  //设置一个停止条件
         var left = [];
         var right = [];
-        var middleIndex = Math.floor(arr.length / 2);  //中间项的索引 
-       var middleItem = arr.splice(middleIndex, 1)[0];//中间项
+        var middleIndex = Math.floor(arr.length / 2);  //中间项的索引 (任意一个数都可以 拿中间数为例)
+        var middleItem = arr.splice(middleIndex, 1)[0];//中间项
         for(var i = 0; i < arr.length; i++){
             arr[i] < middleItem ? left.push(arr[i]) : right.push(arr[i]); //拆分数组，小的放左边，大的放右边
         }
